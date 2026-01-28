@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Connect with Me</title>
+
+  <!-- Font Awesome (Free Icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      width: 360px;
+      max-width: 95%;
+      background: linear-gradient(180deg, #2c2c2c 0%, #0f0f0f 100%);
+      border-radius: 28px;
+      padding: 32px 24px 28px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 16px;
+      border: 3px solid rgba(255,255,255,0.15);
+    }
+
+    .username {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 22px;
+      letter-spacing: 0.3px;
+    }
+
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .socials a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      transition: all 0.25s ease;
+    }
+
+    .socials a:hover {
+      background: #ffffff;
+      color: #000;
+      transform: translateY(-2px);
+    }
+
+    .cta-btn {
+      display: block;
+      width: 100%;
+      padding: 14px 0;
+      background: #ffffff;
+      color: #000000;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 22px;
+      transition: all 0.25s ease;
+    }
+
+    .cta-btn:hover {
+      background: #e6e6e6;
+    }
+
+    .footer {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .footer a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      margin: 0 6px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <!-- Profile Image -->
+    <img src="profile.jpg" alt="Profile Photo" class="profile-img" />
+
+    <!-- Username -->
+    <div class="username">yourusername</div>
+
+    <!-- Social Icons -->
+    <div class="socials">
+      <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Threads"><i class="fab fa-threads"></i></a>
+      <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+      <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+    </div>
+
+    <!-- Call To Action -->
+    <a href="#" class="cta-btn">Connect with me</a>
+
+    <!-- Footer -->
+    <div class="footer">
+      <a href="#">Report</a> • <a href="#">Privacy</a>
+    </div>
+  </div>
+
+</body>
+</html>
