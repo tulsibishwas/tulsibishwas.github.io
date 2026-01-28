@@ -5,10 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vishwas Tulsi | Connect with Me</title>
 
-  <!-- Font Awesome (Free Icons) -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
+    /* =====================
+       🔗 EDIT LINKS HERE ONLY
+       ===================== */
+    :root {
+      --whatsapp: https://wa.me/91XXXXXXXXXX;
+      --instagram: https://instagram.com/tulsivishwas;
+      --threads: https://threads.net/@tulsivishwas;
+      --x: https://x.com/tulsibishwas;
+      --linkedin: https://www.linkedin.com/in/tulsivishwas/;
+      --github: https://github.com/tulsibishwas;
+      --discord: https://discord.gg/tulsibishwas;
+      --telegram: https://t.me/tulsibishwas;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -89,57 +103,38 @@
       font-weight: 600;
       text-decoration: none;
       margin-bottom: 22px;
-      transition: all 0.25s ease;
     }
 
-    .cta-btn:hover {
-      background: #e6e6e6;
-    }
-
-    .footer {
-      font-size: 12px;
-      color: rgba(255,255,255,0.6);
-    }
-
-    .footer a {
-      color: rgba(255,255,255,0.6);
-      text-decoration: none;
-      margin: 0 6px;
-    }
-
-    .footer a:hover {
-      text-decoration: underline;
-    }
+    /* 🔗 Assign links */
+    .wa { content: var(--whatsapp); }
+    .ig { content: var(--instagram); }
+    .th { content: var(--threads); }
+    .tw { content: var(--x); }
+    .li { content: var(--linkedin); }
+    .gh { content: var(--github); }
+    .dc { content: var(--discord); }
+    .tg { content: var(--telegram); }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <!-- Profile Image -->
     <img src="profile.jpg" alt="Profile Photo" class="profile-img" />
 
-    <!-- Username -->
-    <div class="username">tulsibishwas</div>
+    <div class="username">tulsibishwas ✔</div>
 
-    <!-- Social Icons -->
     <div class="socials">
-      <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://instagram.com/tulsivishwas" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://threads.com/tulsivishwas" aria-label="Threads"><i class="fab fa-threads"></i></a>
-      <a href="https://x.com/tulsibishwas" aria-label="X"><i class="fab fa-x-twitter"></i></a>
-      <a href="https://www.linkedin.com/in/tulsivishwas/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://github.com/tulsibishwas" aria-label="GitHub"><i class="fab fa-github"></i></a>
-      <a href="https://discord.com/tulsibishwas" aria-label="Discord"><i class="fab fa-discord"></i></a>
-      <a href="https://t.me/tulsibishwas" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+      <a class="wa" href="var(--whatsapp)"><i class="fab fa-whatsapp"></i></a>
+      <a class="ig" href="var(--instagram)"><i class="fab fa-instagram"></i></a>
+      <a class="th" href="var(--threads)"><i class="fab fa-threads"></i></a>
+      <a class="tw" href="var(--x)"><i class="fab fa-x-twitter"></i></a>
+      <a class="li" href="var(--linkedin)"><i class="fab fa-linkedin-in"></i></a>
+      <a class="gh" href="var(--github)"><i class="fab fa-github"></i></a>
+      <a class="dc" href="var(--discord)"><i class="fab fa-discord"></i></a>
+      <a class="tg" href="var(--telegram)"><i class="fab fa-telegram-plane"></i></a>
     </div>
 
-    <!-- Call To Action -->
-    <a href="#" class="cta-btn">Connect with me</a>
-
-    <!-- Footer -->
-    <div class="footer">
-      <a href="#">Report</a> • <a href="#">Privacy</a>
-    </div>
+    <a href="var(--linkedin)" class="cta-btn">Connect with me</a>
   </div>
 
 </body>
