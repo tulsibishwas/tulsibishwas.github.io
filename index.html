@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vishwas Tulsi — Data Science Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FAFAF8;
+    --bg-alt: #F1F1EC;
+    --ink: #14171B;
+    --ink-soft: #4B5158;
+    --line: #DEDFD8;
+    --teal: #0F6E5E;
+    --teal-soft: rgba(15,110,94,0.10);
+    --amber: #C9791E;
+    --white: #FFFFFF;
+    --radius: 3px;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; }
+
+  .container{
+    max-width:960px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:100;
+    background:rgba(250,250,248,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .container{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .logo{
+    font-family:var(--mono);
+    font-size:14px;
+    font-weight:500;
+    letter-spacing:0.02em;
+  }
+  .logo span{ color:var(--teal); }
+  .nav-links{
+    display:flex; gap:28px; list-style:none;
+  }
+  .nav-links a{
+    font-family:var(--mono);
+    font-size:12.5px;
+    text-decoration:none;
+    color:var(--ink-soft);
+    text-transform:lowercase;
+    letter-spacing:0.03em;
+    transition:color .2s ease;
+    position:relative;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{ color:var(--teal); }
+  .nav-toggle{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:120px 0 96px;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-plot{
+    position:absolute;
+    top:0; right:-6%;
+    width:640px; height:640px;
+    opacity:0.55;
+    pointer-events:none;
+  }
+  .hero-inner{ position:relative; z-index:2; max-width:640px; }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--teal);
+    letter-spacing:0.04em;
+    margin-bottom:20px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:8px; height:8px;
+    background:var(--teal);
+    border-radius:50%;
+    display:inline-block;
+  }
+  h1{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(2.4rem, 5.5vw, 3.6rem);
+    line-height:1.05;
+    letter-spacing:-0.02em;
+    margin-bottom:20px;
+  }
+  .hero p.lede{
+    font-size:1.08rem;
+    color:var(--ink-soft);
+    max-width:520px;
+    margin-bottom:32px;
+  }
+  .hero-cta{
+    display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--mono);
+    font-size:13px;
+    padding:12px 20px;
+    border-radius:var(--radius);
+    text-decoration:none;
+    letter-spacing:0.02em;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:all .2s ease;
+    border:1px solid transparent;
+  }
+  .btn-primary{
+    background:var(--ink);
+    color:var(--bg);
+  }
+  .btn-primary:hover{ background:var(--teal); }
+  .btn-ghost{
+    border-color:var(--line);
+    color:var(--ink);
+  }
+  .btn-ghost:hover{ border-color:var(--teal); color:var(--teal); }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:88px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  .section-head{
+    display:flex; align-items:baseline; gap:16px;
+    margin-bottom:44px;
+  }
+  .section-tag{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--teal);
+    background:var(--teal-soft);
+    padding:4px 10px;
+    border-radius:var(--radius);
+    white-space:nowrap;
+  }
+  h2{
+    font-family:var(--display);
+    font-size:1.9rem;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  /* ---------- ABOUT (dataframe motif) ---------- */
+  .df{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:var(--white);
+  }
+  .df-title{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink-soft);
+    padding:10px 18px;
+    background:var(--bg-alt);
+    border-bottom:1px solid var(--line);
+  }
+  .df-row{
+    display:grid;
+    grid-template-columns:56px 160px 1fr;
+    border-bottom:1px solid var(--line);
+  }
+  .df-row:last-child{ border-bottom:none; }
+  .df-cell{
+    padding:16px 18px;
+    font-size:14.5px;
+  }
+  .df-idx{
+    font-family:var(--mono);
+    color:#B9BBB2;
+    font-size:13px;
+    background:var(--bg-alt);
+    border-right:1px solid var(--line);
+    display:flex; align-items:center;
+  }
+  .df-key{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--teal);
+    border-right:1px solid var(--line);
+    display:flex; align-items:center;
+    letter-spacing:0.01em;
+  }
+  .df-val{ color:var(--ink); display:flex; align-items:center; }
+  .about-note{
+    margin-top:28px;
+    color:var(--ink-soft);
+    max-width:640px;
+    font-size:15px;
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skill-groups{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:28px 40px;
+  }
+  .skill-group h3{
+    font-family:var(--mono);
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--line);
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{
+    font-family:var(--mono);
+    font-size:12.5px;
+    padding:6px 12px;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--white);
+    color:var(--ink);
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .proj-list{ border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--white); }
+  .proj-header{
+    display:grid;
+    grid-template-columns:44px 1fr 160px;
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    padding:12px 18px;
+    background:var(--bg-alt);
+    border-bottom:1px solid var(--line);
+  }
+  .proj-row{
+    display:grid;
+    grid-template-columns:44px 1fr 160px;
+    border-bottom:1px solid var(--line);
+    padding:22px 18px;
+    gap:8px;
+    transition:background .2s ease;
+  }
+  .proj-row:last-child{ border-bottom:none; }
+  .proj-row:hover{ background:var(--bg-alt); }
+  .proj-idx{
+    font-family:var(--mono);
+    color:#B9BBB2;
+    font-size:13px;
+  }
+  .proj-body h3{
+    font-family:var(--display);
+    font-size:1.08rem;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .proj-body p{
+    font-size:14px;
+    color:var(--ink-soft);
+    max-width:560px;
+  }
+  .proj-tags{
+    display:flex; flex-wrap:wrap; gap:6px;
+    align-content:flex-start;
+    justify-content:flex-end;
+  }
+  .proj-tags span{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--teal);
+    background:var(--teal-soft);
+    padding:3px 8px;
+    border-radius:var(--radius);
+    height:fit-content;
+  }
+
+  /* ---------- CERTIFICATIONS / TIMELINE ---------- */
+  .timeline{ position:relative; padding-left:28px; }
+  .timeline::before{
+    content:'';
+    position:absolute; left:5px; top:6px; bottom:6px;
+    width:1px; background:var(--line);
+  }
+  .tl-item{ position:relative; padding-bottom:28px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:'';
+    position:absolute; left:-28px; top:5px;
+    width:9px; height:9px;
+    border-radius:50%;
+    background:var(--teal);
+    border:2px solid var(--bg);
+    box-shadow:0 0 0 1px var(--teal);
+  }
+  .tl-item h4{
+    font-family:var(--display);
+    font-size:1rem;
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .tl-item p{ font-size:13.5px; color:var(--ink-soft); }
+  .tl-tag{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--amber);
+    letter-spacing:0.02em;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-wrap{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    flex-wrap:wrap; gap:32px;
+  }
+  .contact-links{ display:flex; flex-direction:column; gap:10px; }
+  .contact-links a{
+    font-family:var(--mono);
+    font-size:14.5px;
+    text-decoration:none;
+    color:var(--ink);
+    display:inline-flex; align-items:center; gap:10px;
+    width:fit-content;
+    border-bottom:1px solid transparent;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .contact-links a:hover{ color:var(--teal); border-color:var(--teal); }
+  .contact-links a::before{ content:'→'; color:var(--teal); }
+  .contact-note{
+    max-width:320px;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+
+  footer{
+    padding:32px 0 48px;
+    font-family:var(--mono);
+    font-size:12px;
+    color:#9A9C93;
+    display:flex; justify-content:space-between;
+  }
+
+  /* ---------- REVEAL ANIMATION ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 720px){
+    .container{ padding:0 20px; }
+    .nav-links{
+      position:fixed; top:64px; left:0; right:0;
+      background:var(--bg);
+      flex-direction:column;
+      padding:20px;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-140%);
+      transition:transform .25s ease;
+      gap:18px;
+    }
+    .nav-links.open{ transform:translateY(0); }
+    .nav-toggle{
+      display:block;
+      background:none; border:none;
+      font-family:var(--mono);
+      font-size:20px;
+      cursor:pointer;
+      color:var(--ink);
+    }
+    .hero{ padding:88px 0 64px; }
+    .hero-plot{ width:340px; height:340px; opacity:0.35; top:-20px; right:-20%; }
+    .df-row, .proj-row, .proj-header{ grid-template-columns:1fr; }
+    .df-idx, .df-key{ border-right:none; border-bottom:1px solid var(--line); }
+    .proj-tags{ justify-content:flex-start; margin-top:10px; }
+    .proj-idx{ margin-bottom:6px; }
+    .skill-groups{ grid-template-columns:1fr; }
+    .contact-wrap{ flex-direction:column; align-items:flex-start; }
+    footer{ flex-direction:column; gap:6px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo">vishwas<span>.tulsi</span></div>
+    <button class="nav-toggle" aria-label="Toggle menu" id="navToggle">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">about</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#certs">certifications</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="hero-plot" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="#DEDFD8" stroke-width="1">
+      <line x1="60" y1="60" x2="60" y2="520"/>
+      <line x1="60" y1="520" x2="540" y2="520"/>
+    </g>
+    <g fill="#0F6E5E">
+      <circle cx="110" cy="470" r="5" opacity="0.85"/>
+      <circle cx="150" cy="430" r="5" opacity="0.8"/>
+      <circle cx="185" cy="455" r="5" opacity="0.7"/>
+      <circle cx="220" cy="380" r="5" opacity="0.85"/>
+      <circle cx="260" cy="410" r="5" opacity="0.6"/>
+      <circle cx="300" cy="330" r="5" opacity="0.9"/>
+      <circle cx="335" cy="360" r="5" opacity="0.6"/>
+      <circle cx="370" cy="280" r="5" opacity="0.85"/>
+      <circle cx="410" cy="310" r="5" opacity="0.5"/>
+      <circle cx="450" cy="230" r="5" opacity="0.85"/>
+      <circle cx="480" cy="260" r="5" opacity="0.6"/>
+      <circle cx="510" cy="190" r="5" opacity="0.9"/>
+    </g>
+    <path d="M 90 490 C 200 430, 340 320, 520 170" stroke="#C9791E" stroke-width="2" fill="none" opacity="0.8"/>
+  </svg>
+  <div class="container hero-inner">
+    <div class="eyebrow">available for data / research analyst roles</div>
+    <h1>Vishwas Tulsi</h1>
+    <p class="lede">Data science student at IIT Madras, building at the intersection of statistics, geospatial analysis, and applied ML. Based in New Delhi.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">view projects</a>
+      <a href="#" class="btn btn-ghost" id="resumeBtn">download resume ↓</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">01</span>
+      <h2>About</h2>
+    </div>
+    <div class="df">
+      <div class="df-title">student.describe()</div>
+      <div class="df-row">
+        <div class="df-cell df-idx">0</div>
+        <div class="df-cell df-key">degree</div>
+        <div class="df-cell df-val">BS in Data Science &amp; Applications, IIT Madras — CGPA 8.33</div>
+      </div>
+      <div class="df-row">
+        <div class="df-cell df-idx">1</div>
+        <div class="df-cell df-key">background</div>
+        <div class="df-cell df-val">B.Sc Physics, M.Sc Geography</div>
+      </div>
+      <div class="df-row">
+        <div class="df-cell df-idx">2</div>
+        <div class="df-cell df-key">diplomas</div>
+        <div class="df-cell df-val">Computer Applications, Data Science, Programming</div>
+      </div>
+      <div class="df-row">
+        <div class="df-cell df-idx">3</div>
+        <div class="df-cell df-key">location</div>
+        <div class="df-cell df-val">New Delhi, India</div>
+      </div>
+      <div class="df-row">
+        <div class="df-cell df-idx">4</div>
+        <div class="df-cell df-key">focus</div>
+        <div class="df-cell df-val">Data analysis, statistical modeling, geospatial &amp; quantitative research</div>
+      </div>
+    </div>
+    <p class="about-note">I like problems that sit between numbers and the real world — pricing models, match outcomes, infrastructure maps. Outside of that: cricket, football, and taking things apart to see how they work.</p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">02</span>
+      <h2>Skills</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h3>Languages &amp; Tools</h3>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">SQL</span>
+          <span class="chip">Git</span>
+          <span class="chip">NumPy / Pandas</span>
+          <span class="chip">SciPy</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Statistics &amp; Math</h3>
+        <div class="chips">
+          <span class="chip">Probability</span>
+          <span class="chip">Linear Algebra</span>
+          <span class="chip">Hypothesis Testing</span>
+          <span class="chip">Distributions</span>
+          <span class="chip">Regression</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Cloud &amp; Hardware</h3>
+        <div class="chips">
+          <span class="chip">Google Cloud Platform</span>
+          <span class="chip">Cloud Run</span>
+          <span class="chip">Arduino</span>
+          <span class="chip">Electronics</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Domains</h3>
+        <div class="chips">
+          <span class="chip">Geospatial / GIS</span>
+          <span class="chip">Quantitative Research</span>
+          <span class="chip">Cryptography Basics</span>
+          <span class="chip">Machine Learning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">03</span>
+      <h2>Projects</h2>
+    </div>
+    <div class="proj-list">
+      <div class="proj-header">
+        <span>idx</span>
+        <span>project</span>
+        <span style="text-align:right;">stack</span>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-idx">0</div>
+        <div class="proj-body">
+          <h3>Natural Gas Pricing &amp; Storage Contract Model</h3>
+          <p>JPMorgan Chase Quantitative Research virtual experience — modeled seasonal price trends with curve fitting, then built a pricing engine for gas storage contracts.</p>
+        </div>
+        <div class="proj-tags"><span>Python</span><span>SciPy</span></div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-idx">1</div>
+        <div class="proj-body">
+          <h3>India–China LAC Infrastructure Map</h3>
+          <p>Python-based GIS mapping project built as a work sample for the Takshashila Institution Geospatial Research Programme.</p>
+        </div>
+        <div class="proj-tags"><span>Python</span><span>GIS</span></div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-idx">2</div>
+        <div class="proj-body">
+          <h3>EPL 2023–24 Goal Distribution Model</h3>
+          <p>Modeled match goal counts using a Poisson distribution (λ = 3.34), validated with a chi-square goodness-of-fit test.</p>
+        </div>
+        <div class="proj-tags"><span>Statistics</span><span>Python</span></div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-idx">3</div>
+        <div class="proj-body">
+          <h3>ML Inference Pipeline on Cloud Run</h3>
+          <p>Deployed a machine learning inference service to Google Cloud Run (europe-west1) as part of the IITM GCP workshop.</p>
+        </div>
+        <div class="proj-tags"><span>GCP</span><span>Cloud Run</span></div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-idx">4</div>
+        <div class="proj-body">
+          <h3>Arduino Systems</h3>
+          <p>Traffic light controller, ultrasonic distance sensor, LED pattern generator, and buzzer circuit — built during the IITM Arduino workshop.</p>
+        </div>
+        <div class="proj-tags"><span>Arduino</span><span>C++</span></div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-idx">5</div>
+        <div class="proj-body">
+          <h3>BPSC PYQ Pattern Analysis</h3>
+          <p>Analyzed multiple years of BPSC Prelims previous-year questions to surface topic-wise trends, published as a detailed report.</p>
+        </div>
+        <div class="proj-tags"><span>Analysis</span><span>HTML</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">04</span>
+      <h2>Certifications &amp; Workshops</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tl-tag">IIT MADRAS</span>
+        <h4>Google Cloud Platform Workshop</h4>
+        <p>Deployed an ML inference pipeline on Cloud Run.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag">IIT MADRAS</span>
+        <h4>Cryptography Workshop</h4>
+        <p>Core concepts of encryption and secure communication.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag">IIT MADRAS</span>
+        <h4>Arduino Workshop</h4>
+        <p>Hands-on embedded systems and circuit design.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag">DIPLOMA</span>
+        <h4>Computer Applications, Data Science &amp; Programming</h4>
+        <p>Foundational diplomas supporting the BS coursework.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container contact-wrap">
+    <div class="contact-links">
+      <a href="mailto:your.email@example.com">your.email@example.com</a>
+      <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener">linkedin.com/in/your-profile</a>
+      <a href="https://github.com/your-username" target="_blank" rel="noopener">github.com/your-username</a>
+      <a href="https://upwork.com/freelancers/your-profile" target="_blank" rel="noopener">upwork — data science freelance</a>
+    </div>
+    <p class="contact-note">Open to data analyst, research analyst, and quantitative research roles. Reach out — I usually reply within a day.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="display:flex; justify-content:space-between; width:100%;">
+    <span>© 2026 Vishwas Tulsi</span>
+    <span>built with care in New Delhi</span>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('section, .df, .proj-row, .skill-group, .tl-item');
+  revealEls.forEach(el => el.classList.add('reveal'));
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Resume button placeholder — replace href with actual resume file once uploaded
+  document.getElementById('resumeBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    alert('Add your resume PDF and link it here — swap the href on the "download resume" button.');
+  });
+</script>
+
+</body>
+</html>
