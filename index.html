@@ -170,6 +170,28 @@
     letter-spacing:-0.01em;
   }
 
+  /* ---------- TYPEWRITER ---------- */
+  .type-target .tw-cursor{
+    display:inline-block;
+    width:2px;
+    height:0.9em;
+    margin-left:3px;
+    background:var(--teal);
+    vertical-align:-0.1em;
+    animation:tw-blink 0.9s steps(1) infinite;
+  }
+  .type-target.tw-done .tw-cursor{
+    animation-duration:1.1s;
+    opacity:0.6;
+  }
+  @keyframes tw-blink{
+    0%, 49%{ opacity:1; }
+    50%, 100%{ opacity:0; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .type-target .tw-cursor{ animation:none; opacity:0; }
+  }
+
   /* ---------- ABOUT (dataframe motif) ---------- */
   .df{
     border:1px solid var(--line);
@@ -465,7 +487,7 @@
   <div class="container">
     <div class="section-head">
       <span class="section-tag">01</span>
-      <h2>About</h2>
+      <h2 class="type-target">About</h2>
     </div>
     <div class="df">
       <div class="df-title">student.describe()</div>
@@ -503,7 +525,7 @@
   <div class="container">
     <div class="section-head">
       <span class="section-tag">02</span>
-      <h2>Skills</h2>
+      <h2 class="type-target">Skills</h2>
     </div>
     <div class="skill-groups">
       <div class="skill-group">
@@ -552,7 +574,7 @@
   <div class="container">
     <div class="section-head">
       <span class="section-tag">03</span>
-      <h2>Projects</h2>
+      <h2 class="type-target">Projects</h2>
     </div>
     <div class="proj-list">
       <div class="proj-header">
@@ -622,7 +644,7 @@
   <div class="container">
     <div class="section-head">
       <span class="section-tag">04</span>
-      <h2>Certifications &amp; Workshops</h2>
+      <h2 class="type-target">Certifications &amp; Workshops</h2>
     </div>
     <div class="timeline">
       <div class="tl-item">
@@ -688,6 +710,47 @@
     });
   }, { threshold: 0.1 });
   revealEls.forEach(el => io.observe(el));
+
+  // Typewriter effect on section headings, triggered on scroll
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const typeTargets = document.querySelectorAll('.type-target');
+
+  typeTargets.forEach(el => {
+    const fullText = el.textContent.trim();
+    el.setAttribute('data-full-text', fullText);
+    if (reduceMotion){
+      return; // leave text as-is, no animation
+    }
+    el.innerHTML = '<span class="tw-text"></span><span class="tw-cursor"></span>';
+  });
+
+  function typeWriter(el){
+    const text = el.getAttribute('data-full-text');
+    const textSpan = el.querySelector('.tw-text');
+    if (!textSpan) return;
+    let i = 0;
+    const speed = 38; // ms per character
+    const interval = setInterval(() => {
+      textSpan.textContent = text.slice(0, i + 1);
+      i++;
+      if (i >= text.length){
+        clearInterval(interval);
+        el.classList.add('tw-done');
+      }
+    }, speed);
+  }
+
+  if (!reduceMotion){
+    const twObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          typeWriter(entry.target);
+          twObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.6 });
+    typeTargets.forEach(el => twObserver.observe(el));
+  }
 
   // Resume button placeholder — replace href with actual resume file once uploaded
   document.getElementById('resumeBtn').addEventListener('click', (e) => {
