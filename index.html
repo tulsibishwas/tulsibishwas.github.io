@@ -478,7 +478,7 @@
     <p class="lede">Data science student at IIT Madras, building at the intersection of statistics, geospatial analysis, and applied ML. Based in New Delhi.</p>
     <div class="hero-cta">
       <a href="#projects" class="btn btn-primary">view projects</a>
-      <a href="#" class="btn btn-ghost" id="resumeBtn">download resume ↓</a>
+      <a href="resume.pdf" class="btn btn-ghost" id="resumeBtn" download>download resume ↓</a>
     </div>
   </div>
 </header>
@@ -752,11 +752,6 @@
     typeTargets.forEach(el => twObserver.observe(el));
   }
 
-  // Resume button placeholder — replace href with actual resume file once uploaded
-  document.getElementById('resumeBtn').addEventListener('click', (e) => {
-    e.preventDefault();
-    alert('Add your resume PDF and link it here — swap the href on the "download resume" button.');
-  });
 </script>
 
 </body>
